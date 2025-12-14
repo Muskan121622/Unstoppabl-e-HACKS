@@ -7,25 +7,26 @@ function calculateValueImpact(project) {
         .then(priceData => {
             // Base value from circle rate
             const baseValue = priceData.circleRate * 100; // Convert to full value
-            
+
             // Calculate impact based on project size and type
             let impactPercent = 0;
-            
+
             // Small positive impact for affordable housing
             impactPercent += 0.01;
-            
+
             // Slight negative impact for high density projects
             if (project.units > 100) {
                 impactPercent -= 0.005;
             }
-            
+
             // Calculate actual values
             const afterValue = baseValue * (1 + impactPercent);
-            
+
             return {
                 before: baseValue,
                 after: Math.round(afterValue),
-                changePercent: (impactPercent * 100).toFixed(1)
+                changePercent: (impactPercent * 100).toFixed(1),
+                sourcePdf: priceData.sourcePdf
             };
         })
         .catch(error => {

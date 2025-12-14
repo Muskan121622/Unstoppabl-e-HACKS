@@ -22,6 +22,8 @@
                     <li><a href="dashboard.html">Dashboard</a></li>
                     <li><a href="community.html">Community</a></li>
                 </ul>
+                <button id="connect-wallet" class="btn btn-sm secondary" style="margin-left: 1rem;">Connect
+                    Wallet</button>
             </nav>
         </div>
     </header>
@@ -78,8 +80,9 @@
                         </ul>
                     </div>
                     <div class="problem-image">
-                        <!-- Placeholder for image -->
-                        <div class="placeholder-box">Community Meeting Visualization</div>
+                        <img src="img.svg" alt="Community Meeting Visualization"
+                            style="width: 100%; height: auto; border-radius: 4px;">
+                        <div class="placeholder-box" style="display: none;">Community Meeting Visualization</div>
                     </div>
                 </div>
             </div>
@@ -174,6 +177,7 @@
         Report downloaded successfully!
     </div>
 
+    <script src="js/auth.js"></script>
     <script src="js/data-loader.js"></script>
     <script src="js/document-parser.js"></script>
     <script src="js/stats.js"></script>
