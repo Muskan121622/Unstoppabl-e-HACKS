@@ -36,8 +36,26 @@
                 <div class="cta-buttons">
                     <a href="map.html" class="btn primary">View Projects</a>
                     <a href="dashboard.html" class="btn secondary">See Insights</a>
-                    <a href="assets/docs/reports/annual-report-2025.pdf" target="_blank" class="btn tertiary">Download
-                        Annual Report (PDF)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Platform Section -->
+        <section class="about-platform" style="background-color: #fff; padding: 3rem 0; border-bottom: 1px solid #eee;">
+            <div class="container">
+                <h2 style="color: #003366; margin-bottom: 1.5rem; border-left: 5px solid #fcba19; padding-left: 1rem;">
+                    About HSHP Platform</h2>
+                <div class="about-content" style="font-size: 1.1rem; color: #444; line-height: 1.8;">
+                    <p style="margin-bottom: 1rem;"><strong>Hometown Stability Housing Program (HSHP)</strong> is a
+                        serverless, decentralized web platform designed to reduce NIMBY (Not In My Backyard) resistance
+                        by improving transparency in affordable housing development.</p>
+                    <p style="margin-bottom: 1rem;">The platform visualizes real housing projects, zoning rules, and
+                        community benefit indicators such as property stability, zoning compliance, and public
+                        sentiment. By presenting government housing and planning data in a simple, understandable
+                        format, HSHP helps homeowners, community members, and city planners make informed decisions.</p>
+                    <p>The system runs entirely in the browser without backend servers, ensuring reliability, low cost,
+                        and easy adoption by public institutions while promoting trust, fairness, and community
+                        stability.</p>
                 </div>
             </div>
         </section>
@@ -183,14 +201,6 @@
     <script src="js/stats.js"></script>
     <script>
         // Simple notification system
-        document.querySelector('.btn.tertiary').addEventListener('click', function (e) {
-            e.preventDefault();
-            const notification = document.getElementById('notification');
-            notification.classList.add('show');
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        });
     </script>
 </body>
 

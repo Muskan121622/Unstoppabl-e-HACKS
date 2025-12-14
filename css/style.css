@@ -78,11 +78,23 @@ header h1 {
     .logo-acronym {
         display: block;
     }
+
+    .logo-acronym {
+        display: block;
+    }
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 nav ul {
     display: flex;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -1270,5 +1282,4 @@ footer p {
 .modal-content {
     width: 95%;
     margin: 1rem;
-}
 }

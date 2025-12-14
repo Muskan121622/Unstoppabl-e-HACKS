@@ -3,7 +3,7 @@
     "id": 1,
     "project_id": 1,
     "text": "I'm excited to see more affordable options in our neighborhood. This project seems well-designed.",
-    "author": "Sarah Johnson",
+    "author": "Suman Gupta",
     "date": "2025-03-15",
     "sentiment": "positive"
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "project_id": 1,
     "text": "Concerned about increased traffic but willing to give it a chance. Hope there will be adequate parking.",
-    "author": "Michael Chen",
+    "author": "Rajesh Kumar",
     "date": "2025-03-10",
     "sentiment": "neutral"
   },
@@ -19,7 +19,7 @@
     "id": 3,
     "project_id": 1,
     "text": "Don't want this in my neighborhood. It will decrease property values and bring crime.",
-    "author": "Robert Williams",
+    "author": "Vikram Singh",
     "date": "2025-03-05",
     "sentiment": "negative"
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "project_id": 2,
     "text": "The senior living facility has been a great addition to our community. My parents are very happy with the services.",
-    "author": "Jennifer Lee",
+    "author": "Anjali Sharma",
     "date": "2025-02-20",
     "sentiment": "positive"
   },
@@ -35,7 +35,7 @@
     "id": 5,
     "project_id": 2,
     "text": "Noise from the facility has been an issue, especially during evening activities.",
-    "author": "Thomas Wright",
+    "author": "Manoj Verma",
     "date": "2025-01-15",
     "sentiment": "negative"
   }
