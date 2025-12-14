@@ -117,7 +117,8 @@
                     Home Value Impact</h3>
                 <p>Estimated effect on surrounding property values:</p>
                 <div class="document-reference">
-                    <a href="assets/docs/circle-rates/sector-56-circle-rate.pdf" target="_blank" class="btn btn-sm">View
+                    <a href="assets/docs/circle-rates/sector-56-circle-rate.pdf" target="_blank" class="btn btn-sm"
+                        id="circle-rate-link">View
                         Circle Rate Document (PDF)</a>
                 </div>
                 <div class="value-chart">
@@ -137,6 +138,70 @@
                     </div>
                 </div>
                 <p><em>Note: Values are projected based on historical data and comparable developments.</em></p>
+            </div>
+
+            <!-- Feature 5: TIF Benefits Viewer -->
+            <div class="section" id="tif-section">
+                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">
+                    TIF Benefits Viewer (Tax Increment Financing)</h3>
+                <p>Estimate potential tax savings and community benefits:</p>
+
+                <div class="tif-container" style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div class="tif-inputs"
+                        style="flex: 1; min-width: 300px; background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
+                        <h4 style="margin-top: 0; color: #003366;">Calculator Inputs</h4>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label for="tif-property-value"
+                                style="display: block; margin-bottom: 5px; font-weight: 600;">Property Value (Check
+                                Circle Rate):</label>
+                            <input type="number" id="tif-property-value" value="5000000"
+                                style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label for="tif-tax-rate"
+                                style="display: block; margin-bottom: 5px; font-weight: 600;">Property Tax Rate
+                                (%):</label>
+                            <input type="number" id="tif-tax-rate" value="1.5" step="0.1"
+                                style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label for="tif-protection"
+                                style="display: block; margin-bottom: 5px; font-weight: 600;">TIF Protection/Rebate
+                                (%):</label>
+                            <input type="number" id="tif-protection" value="60" step="1"
+                                style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        </div>
+
+                        <button id="calculate-tif" class="btn btn-sm primary" style="width: 100%;">Calculate
+                            Benefits</button>
+                    </div>
+
+                    <div class="tif-results" style="flex: 1; min-width: 300px;">
+                        <div class="detail-card"
+                            style="margin-bottom: 15px; background: white; border-left: 5px solid #2ecc71;">
+                            <h4>Estimated Annual Savings</h4>
+                            <p id="tif-annual-savings" style="font-size: 1.5rem; color: #2ecc71;">₹0</p>
+                        </div>
+
+                        <div class="chart-box"
+                            style="height: 250px; background: #f8f9fa; border-radius: 8px; padding: 10px; display: flex; flex-direction: column;">
+                            <h4 style="text-align: center; margin: 0 0 10px 0; font-size: 0.9rem;">5-Year Projected
+                                Savings</h4>
+                            <div id="tif-chart-container"
+                                style="flex: 1; display: flex; align-items: flex-end; justify-content: space-around; gap: 10px; padding-bottom: 20px;">
+                                <!-- Bars will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="document-reference" style="margin-top: 15px;">
+                    <a href="https://jamabandi.nic.in" target="_blank" class="btn btn-sm"
+                        style="background-color: #6c757d; color: white;">View Property Records (Jamabandi)</a>
+                </div>
             </div>
 
             <div class="feedback-section">
@@ -190,6 +255,7 @@
     <script src="js/sentiment.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/project.js"></script>
+    <script src="js/tif.js"></script>
     <script>
         // Add project controls
         document.addEventListener('DOMContentLoaded', function () {

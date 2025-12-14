@@ -23,6 +23,7 @@ function loadProjectDetails(projectId) {
         .then(response => response.json())
         .then(projects => {
             const project = Array.isArray(projects) ? projects.find(p => p.id == projectId) : projects;
+            window.currentProject = project;
 
             if (!project) {
                 document.getElementById('project-name').textContent = 'Project Not Found';
@@ -54,6 +55,9 @@ function loadProjectDetails(projectId) {
 
             // Update value impact
             updateValueImpact(project);
+
+            // Update TIF calculator defaults
+            updateTIFDefaults(project);
 
             // Load project documents
             loadProjectDocuments(project);
@@ -159,29 +163,43 @@ function updateZoningInfo(project) {
 
 function updateValueImpact(project) {
     // Calculate value impact
-    const impact = valueEstimator.calculateValueImpact(project);
+    valueEstimator.calculateValueImpact(project).then(impact => {
+        // Update value display
+        document.getElementById('before-value').textContent = utils.formatCurrency(impact.before);
+        document.getElementById('after-value').textContent = utils.formatCurrency(impact.after);
 
-    // Update value display
-    document.getElementById('before-value').textContent = utils.formatCurrency(impact.before);
-    document.getElementById('after-value').textContent = utils.formatCurrency(impact.after);
+        // Update bars (as percentage of max value for visualization)
+        const maxValue = Math.max(impact.before, impact.after) * 1.1; // Add 10% for spacing
+        const beforeHeight = (impact.before / maxValue) * 100;
+        const afterHeight = (impact.after / maxValue) * 100;
 
-    // Update bars (as percentage of max value for visualization)
-    const maxValue = Math.max(impact.before, impact.after) * 1.1; // Add 10% for spacing
-    const beforeHeight = (impact.before / maxValue) * 100;
-    const afterHeight = (impact.after / maxValue) * 100;
+        document.getElementById('before-bar').style.height = beforeHeight + '%';
+        document.getElementById('after-bar').style.height = afterHeight + '%';
 
-    document.getElementById('before-bar').style.height = beforeHeight + '%';
-    document.getElementById('after-bar').style.height = afterHeight + '%';
+        // Update change percentage
+        let changeElement = document.getElementById('projected-change');
+        if (!changeElement) {
+            changeElement = document.createElement('p');
+            changeElement.id = 'projected-change';
+            changeElement.style.marginTop = '1rem';
+            changeElement.style.fontWeight = 'bold';
 
-    // Update change percentage
-    const changeElement = document.createElement('p');
-    changeElement.innerHTML = `<strong>Projected Change:</strong> ${impact.changePercent}%`;
-    changeElement.style.marginTop = '1rem';
-    changeElement.style.fontWeight = 'bold';
+            // Insert after the note paragraph
+            const noteParagraph = document.querySelector('.section p em').parentNode;
+            noteParagraph.parentNode.insertBefore(changeElement, noteParagraph.nextSibling);
+        }
+        changeElement.innerHTML = `<strong>Projected Change:</strong> ${impact.changePercent}%`;
 
-    // Insert after the note paragraph
-    const noteParagraph = document.querySelector('.section p em').parentNode;
-    noteParagraph.parentNode.insertBefore(changeElement, noteParagraph.nextSibling);
+        // Update PDF link
+        if (impact.sourcePdf) {
+            const link = document.getElementById('circle-rate-link');
+            if (link) link.href = impact.sourcePdf;
+        }
+    }).catch(error => {
+        console.error('Error updating value impact:', error);
+        document.getElementById('before-value').textContent = 'Error';
+        document.getElementById('after-value').textContent = 'Error';
+    });
 }
 
 function setupProjectControls() {
@@ -190,13 +208,35 @@ function setupProjectControls() {
 
     if (exportButton) {
         exportButton.addEventListener('click', function () {
-            showNotification('Project data exported successfully!');
+            if (!window.currentProject) {
+                showNotification('Still loading project data...');
+                return;
+            }
+
+            // Create data blob
+            const dataStr = JSON.stringify(window.currentProject, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+
+            // Create phantom link
+            const exportFileDefaultName = `project-${window.currentProject.id}.json`;
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+
+            showNotification('Project data downloading...');
         });
     }
 
     if (shareButton) {
         shareButton.addEventListener('click', function () {
-            showNotification('Project shared successfully!');
+            // Copy URL to clipboard
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showNotification('Link copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+                showNotification('Failed to copy link.');
+            });
         });
     }
 }
@@ -274,4 +314,30 @@ function showNotification(message) {
             notification.classList.remove('show');
         }, 3000);
     }
+}
+
+function updateTIFDefaults(project) {
+    // Get circle rate data
+    fetch('data/prices.json')
+        .then(response => response.json())
+        .then(priceData => {
+            if (priceData && priceData.circleRate) {
+                const valueInput = document.getElementById('tif-property-value');
+                if (valueInput) {
+                    // Set value based on circle rate * generic size (e.g. 1000 sq ft) or just use circle rate as base
+                    // Use a realistic project value. If circle rate is per sq yard/meter, and we don't have area, 
+                    // we'll assume a standard unit size or just use the raw circle rate if it looks like a total value.
+                    // Looking at prices.json: "circleRate": 7800. This is small, likely per sq ft.
+                    // Let's assume 1000 sq ft unit.
+                    const unitSize = 1000;
+                    valueInput.value = priceData.circleRate * unitSize;
+
+                    // Trigger calculation
+                    if (window.tifCalculator) {
+                        window.tifCalculator.updateView();
+                    }
+                }
+            }
+        })
+        .catch(err => console.error('Error setting TIF defaults:', err));
 }
