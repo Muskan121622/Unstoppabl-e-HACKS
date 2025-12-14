@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Details - HSHS</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
+
     <header>
         <div class="container">
             <h1 class="logo-full">Hometown Stability Housing Program</h1>
@@ -26,7 +28,8 @@
 
     <main id="main-content">
         <section class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                 <div class="project-detail-header">
                     <h2 id="project-name">Loading project...</h2>
                     <span class="status-badge" id="project-status">Loading</span>
@@ -36,22 +39,62 @@
                     <button class="btn btn-sm" id="share-project">Share</button>
                 </div>
             </div>
-            
+
             <div class="project-meta">
                 <div class="meta-item">Location: <span id="project-location">-</span></div>
                 <div class="meta-item">Units: <span id="project-units">-</span></div>
                 <div class="meta-item">Affordability: <span id="project-affordability">-</span></div>
                 <div class="meta-item">Timeline: <span id="project-timeline">-</span></div>
             </div>
-            
+
             <div class="section">
-                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Project Overview</h3>
+                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">
+                    Project Overview</h3>
                 <p id="project-description">Loading project description...</p>
+                <div class="document-gallery">
+                    <h4>Project Documents</h4>
+                    <div id="document-list">
+                        <!-- Documents will be loaded dynamically -->
+                    </div>
+                    <style>
+                        .doc-item {
+                            margin-bottom: 10px;
+                            padding: 10px;
+                            border: 1px solid #ddd;
+                            border-radius: 5px;
+                            background-color: #f9f9f9;
+                        }
+
+                        .doc-link {
+                            color: #003366;
+                            text-decoration: none;
+                            font-weight: bold;
+                        }
+
+                        .doc-link:hover {
+                            text-decoration: underline;
+                        }
+                    </style>
+                </div>
             </div>
-            
+
             <div class="section">
-                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Zoning Compliance Check</h3>
+                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">
+                    Zoning Compliance Check</h3>
                 <p>Verification against local zoning regulations:</p>
+                <!-- Feature 4: Zoning Simulator -->
+                <div class="detail-card"
+                    style="background: #f0f7ff; border: 1px solid #cce5ff; padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                    <h4 style="margin-top: 0; color: #003366;">Zoning Simulator</h4>
+                    <p style="margin-bottom: 5px;"><strong>Simulation Result:</strong> <span id="zoning-sim-result"
+                            style="font-size: 1.2em;">Running simulation...</span></p>
+                    <p style="font-size: 0.9em; color: #666; margin: 0;">(Based on units vs. max allowed)</p>
+                </div>
+
+                <div class="document-reference">
+                    <a href="assets/docs/zoning/gurugram-zoning-plan.pdf" target="_blank" class="btn btn-sm">View Zoning
+                        Regulations (PDF)</a>
+                </div>
                 <div class="zoning-result" id="zoning-result">
                     Checking compliance...
                 </div>
@@ -68,10 +111,15 @@
                     <p>Allowed: <span id="density-allowed">-</span> | Proposed: <span id="density-proposed">-</span></p>
                 </div>
             </div>
-            
+
             <div class="section">
-                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Home Value Impact</h3>
+                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">
+                    Home Value Impact</h3>
                 <p>Estimated effect on surrounding property values:</p>
+                <div class="document-reference">
+                    <a href="assets/docs/circle-rates/sector-56-circle-rate.pdf" target="_blank" class="btn btn-sm">View
+                        Circle Rate Document (PDF)</a>
+                </div>
                 <div class="value-chart">
                     <div class="value-bar">
                         <div class="bar-container">
@@ -90,24 +138,25 @@
                 </div>
                 <p><em>Note: Values are projected based on historical data and comparable developments.</em></p>
             </div>
-            
+
             <div class="feedback-section">
-                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Community Feedback</h3>
+                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">
+                    Community Feedback</h3>
                 <p>Your opinion matters. Help us understand community sentiment:</p>
-                
+
                 <div class="vote-buttons">
                     <button class="vote-btn upvote">👍 Support</button>
                     <span class="vote-count" id="upvote-count">0</span>
                     <button class="vote-btn downvote">👎 Concerns</button>
                     <span class="vote-count" id="downvote-count">0</span>
                 </div>
-                
+
                 <div class="feedback-form">
                     <h4>Share Your Thoughts</h4>
                     <textarea id="feedback-text" placeholder="Enter your feedback about this project..."></textarea>
                     <button class="submit-feedback" id="submit-feedback">Submit Feedback</button>
                 </div>
-                
+
                 <div class="feedback-list">
                     <h4>Community Voices</h4>
                     <div id="feedback-container">
@@ -143,20 +192,20 @@
     <script src="js/project.js"></script>
     <script>
         // Add project controls
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const exportButton = document.getElementById('export-project');
             const shareButton = document.getElementById('share-project');
             const notification = document.getElementById('project-notification');
-            
-            exportButton.addEventListener('click', function() {
+
+            exportButton.addEventListener('click', function () {
                 notification.textContent = 'Project data exported successfully!';
                 notification.className = 'notification show success';
                 setTimeout(() => {
                     notification.classList.remove('show');
                 }, 3000);
             });
-            
-            shareButton.addEventListener('click', function() {
+
+            shareButton.addEventListener('click', function () {
                 notification.textContent = 'Project shared successfully!';
                 notification.className = 'notification show success';
                 setTimeout(() => {
@@ -166,4 +215,5 @@
         });
     </script>
 </body>
+
 </html>

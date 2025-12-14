@@ -1,41 +1,42 @@
 // Home value impact estimator
 
 function calculateValueImpact(project) {
-    // In a real implementation, this would use actual market data
-    // For this demo, we'll simulate value calculations
-    
-    // Base value for the area
-    const baseValue = 350000;
-    
-    // Factors that might affect value (simplified for demo)
-    const factors = {
-        affordability: 0.005, // 0.5% increase for affordable housing
-        density: -0.002,      // 0.2% decrease for higher density
-        amenities: 0.01       // 1% increase for good amenities
-    };
-    
-    // Calculate impact based on project characteristics
-    let impactPercent = 0;
-    
-    // Positive impact from affordability
-    impactPercent += factors.affordability;
-    
-    // Minimal negative impact from density (if applicable)
-    if (project.units > 100) {
-        impactPercent += factors.density;
-    }
-    
-    // Positive impact from amenities
-    impactPercent += factors.amenities;
-    
-    // Calculate actual values
-    const afterValue = baseValue * (1 + impactPercent);
-    
-    return {
-        before: baseValue,
-        after: Math.round(afterValue),
-        changePercent: (impactPercent * 100).toFixed(1)
-    };
+    // Use actual price data from JSON
+    return fetch('data/prices.json')
+        .then(response => response.json())
+        .then(priceData => {
+            // Base value from circle rate
+            const baseValue = priceData.circleRate * 100; // Convert to full value
+            
+            // Calculate impact based on project size and type
+            let impactPercent = 0;
+            
+            // Small positive impact for affordable housing
+            impactPercent += 0.01;
+            
+            // Slight negative impact for high density projects
+            if (project.units > 100) {
+                impactPercent -= 0.005;
+            }
+            
+            // Calculate actual values
+            const afterValue = baseValue * (1 + impactPercent);
+            
+            return {
+                before: baseValue,
+                after: Math.round(afterValue),
+                changePercent: (impactPercent * 100).toFixed(1)
+            };
+        })
+        .catch(error => {
+            console.error('Error calculating value impact:', error);
+            // Fallback values
+            return {
+                before: 350000,
+                after: 355000,
+                changePercent: '1.4'
+            };
+        });
 }
 
 // Export for use in other modules

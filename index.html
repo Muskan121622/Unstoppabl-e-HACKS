@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HSHS - Hometown Stability Housing Program</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
+
     <header>
         <div class="container">
             <h1 class="logo-full">Hometown Stability Housing Program</h1>
@@ -32,7 +34,8 @@
                 <div class="cta-buttons">
                     <a href="map.html" class="btn primary">View Projects</a>
                     <a href="dashboard.html" class="btn secondary">See Insights</a>
-                    <a href="#" class="btn tertiary">Download Report</a>
+                    <a href="assets/docs/reports/annual-report-2025.pdf" target="_blank" class="btn tertiary">Download
+                        Annual Report (PDF)</a>
                 </div>
             </div>
         </section>
@@ -41,19 +44,19 @@
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-value">1,250</div>
+                        <div class="stat-value" id="affordable-units">0</div>
                         <div class="stat-label">Affordable Units</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">12</div>
+                        <div class="stat-value" id="active-projects">0</div>
                         <div class="stat-label">Active Projects</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">87%</div>
+                        <div class="stat-value" id="zoning-compliance">0%</div>
                         <div class="stat-label">Zoning Compliance</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-value">+1.2%</div>
+                        <div class="stat-value" id="value-change">+0.0%</div>
                         <div class="stat-label">Avg. Value Change</div>
                     </div>
                 </div>
@@ -65,7 +68,8 @@
                 <h2>The Challenge</h2>
                 <div class="problem-content">
                     <div class="problem-text">
-                        <p>Affordable housing projects often face community resistance due to misconceptions about their impact on property values and neighborhood character.</p>
+                        <p>Affordable housing projects often face community resistance due to misconceptions about their
+                            impact on property values and neighborhood character.</p>
                         <p>This lack of understanding leads to:</p>
                         <ul>
                             <li>Delayed or blocked housing projects</li>
@@ -93,7 +97,8 @@
                     <div class="step">
                         <div class="step-number">2</div>
                         <h3>Analysis & Modeling</h3>
-                        <p>Our algorithms analyze the impact of proposed projects on property values and community stability.</p>
+                        <p>Our algorithms analyze the impact of proposed projects on property values and community
+                            stability.</p>
                     </div>
                     <div class="step">
                         <div class="step-number">3</div>
@@ -110,7 +115,8 @@
                 <div class="benefit-cards">
                     <div class="card">
                         <h3>Property Value Stability</h3>
-                        <p>Data shows that well-planned affordable housing has minimal negative impact on surrounding property values.</p>
+                        <p>Data shows that well-planned affordable housing has minimal negative impact on surrounding
+                            property values.</p>
                     </div>
                     <div class="card">
                         <h3>Zoning Compliance</h3>
@@ -129,17 +135,20 @@
                 <h2>Community Voices</h2>
                 <div class="testimonial-grid">
                     <div class="testimonial-card">
-                        <p class="testimonial-text">"The transparency provided by HSHP helped our community understand the positive impact of the new housing development."</p>
+                        <p class="testimonial-text">"The transparency provided by HSHP helped our community understand
+                            the positive impact of the new housing development."</p>
                         <div class="testimonial-author">Sarah Johnson</div>
                         <div class="testimonial-role">City Council Member</div>
                     </div>
                     <div class="testimonial-card">
-                        <p class="testimonial-text">"I was skeptical at first, but the data clearly showed minimal impact on property values. Great initiative!"</p>
+                        <p class="testimonial-text">"I was skeptical at first, but the data clearly showed minimal
+                            impact on property values. Great initiative!"</p>
                         <div class="testimonial-author">Michael Chen</div>
                         <div class="testimonial-role">Local Resident</div>
                     </div>
                     <div class="testimonial-card">
-                        <p class="testimonial-text">"HSHP has been instrumental in bridging the gap between developers and residents."</p>
+                        <p class="testimonial-text">"HSHP has been instrumental in bridging the gap between developers
+                            and residents."</p>
                         <div class="testimonial-author">Robert Williams</div>
                         <div class="testimonial-role">Community Organizer</div>
                     </div>
@@ -166,9 +175,11 @@
     </div>
 
     <script src="js/data-loader.js"></script>
+    <script src="js/document-parser.js"></script>
+    <script src="js/stats.js"></script>
     <script>
         // Simple notification system
-        document.querySelector('.btn.tertiary').addEventListener('click', function(e) {
+        document.querySelector('.btn.tertiary').addEventListener('click', function (e) {
             e.preventDefault();
             const notification = document.getElementById('notification');
             notification.classList.add('show');
@@ -178,4 +189,5 @@
         });
     </script>
 </body>
+
 </html>

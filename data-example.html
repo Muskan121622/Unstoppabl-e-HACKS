@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .data-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .source-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .source-link:hover {
+            background-color: #0056b3;
+        }
+        .trend-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            border: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Display Example</h1>
+    
+    <div class="data-card">
+        <h2>Project Information</h2>
+        <p id="project-name">Loading...</p>
+        <p id="project-area">Area: <span id="area-value">-</span></p>
+        <p id="project-status">Status: <span id="status-value">-</span></p>
+        <a id="project-source" class="source-link" href="#" target="_blank">View Source Document</a>
+    </div>
+    
+    <div class="data-card">
+        <h2>Price Trend</h2>
+        <p id="trend-year">Year: <span id="year-value">-</span></p>
+        <p id="trend-price">Average Price: $<span id="price-value">-</span></p>
+        <img id="trend-image" class="trend-image" src="" alt="Price Trend Visualization">
+    </div>
+
+    <script>
+        // Load and display project data
+        async function displayProjectData() {
+            try {
+                const response = await fetch('data/projects.json');
+                const projects = await response.json();
+                
+                if (projects.length > 0) {
+                    const project = projects[0];
+                    document.getElementById('project-name').textContent = project.name;
+                    document.getElementById('area-value').textContent = project.area;
+                    document.getElementById('status-value').textContent = project.status;
+                    document.getElementById('project-source').href = project.sourcePdf;
+                }
+            } catch (error) {
+                console.error('Error loading project data:', error);
+                document.getElementById('project-name').textContent = 'Error loading data';
+            }
+        }
+        
+        // Load and display trend data
+        async function displayTrendData() {
+            try {
+                const response = await fetch('data/trends.json');
+                const trends = await response.json();
+                
+                if (trends.length > 0) {
+                    const trend = trends[0];
+                    document.getElementById('year-value').textContent = trend.year;
+                    document.getElementById('price-value').textContent = trend.avgPrice.toLocaleString();
+                    document.getElementById('trend-image').src = trend.sourceImage;
+                }
+            } catch (error) {
+                console.error('Error loading trend data:', error);
+                document.getElementById('year-value').textContent = 'Error';
+            }
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            displayProjectData();
+            displayTrendData();
+        });
+    </script>
+</body>
+</html>

@@ -5,17 +5,46 @@ let projectsData = [];
 let zoningData = {};
 let priceData = {};
 let feedbackData = [];
+let documentsData = [];
 
 // Load all data when the script is loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     loadData();
 });
 
 // Function to load all JSON data
 function loadData() {
-    // In a real implementation, we would fetch JSON files
-    // For this demo, we'll use the static data we defined earlier
-    
+    // Load actual JSON data from files
+    Promise.all([
+        fetch('data/projects.json').then(r => r.json()),
+        fetch('data/zoning.json').then(r => r.json()),
+        fetch('data/prices.json').then(r => r.json()),
+        fetch('data/trends.json').then(r => r.json()),
+        fetch('data/feedback.json').then(r => r.json()),
+        fetch('data/documents.json').then(r => r.json().catch(err => [])) // Handle missing/empty file gracefully
+    ])
+        .then(([projects, zoning, prices, trends, feedback, documents]) => {
+            projectsData = Array.isArray(projects) ? projects : [projects];
+            zoningData = zoning;
+            priceData = {
+                trends: Array.isArray(trends) ? trends.map(t => ({ year: t.year, avg_price: t.avgPrice })) : [],
+                impact: {
+                    before: prices.circleRate,
+                    after: prices.circleRate * 1.01,
+                    change_percent: 1.0
+                }
+            };
+            feedbackData = Array.isArray(feedback) ? feedback : [feedback];
+            documentsData = Array.isArray(documents) ? documents : [];
+
+            // Dispatch event to notify that data is ready
+            document.dispatchEvent(new CustomEvent('HSHP:DataLoaded'));
+        })
+        .catch(error => {
+            console.error('Error loading data:', error);
+            // Fallback to hardcoded data if needed
+        });
+
     // Projects data
     projectsData = [
         {
@@ -71,7 +100,7 @@ function loadData() {
             funding: "University Partnership"
         }
     ];
-    
+
     // Zoning data
     zoningData = {
         "residential-a": {
@@ -96,7 +125,7 @@ function loadData() {
             description: "High-density district allowing residential and commercial uses"
         }
     };
-    
+
     // Price data
     priceData = {
         "trends": [
@@ -113,7 +142,7 @@ function loadData() {
             "change_percent": 1.4
         }
     };
-    
+
     // Feedback data
     feedbackData = [
         {
@@ -193,9 +222,20 @@ function getProjectsByStatus(status) {
 }
 
 function searchProjects(query) {
-    return projectsData.filter(project => 
+    return projectsData.filter(project =>
         project.name.toLowerCase().includes(query.toLowerCase()) ||
         project.address.toLowerCase().includes(query.toLowerCase())
+    );
+}
+
+function getDocuments() {
+    return documentsData;
+}
+
+function getDocumentsByProject(projectName) {
+    return documentsData.filter(doc =>
+        doc.project === projectName ||
+        (doc.project === 'Sector 104 Development' && (projectName === 'Tathastu I' || projectName === 'Tathastu II'))
     );
 }
 
@@ -209,5 +249,12 @@ window.dataLoader = {
     getFeedbackByProjectId,
     getAllFeedback,
     getProjectsByStatus,
-    searchProjects
+    searchProjects,
+    getDocuments,
+    getDocumentsByProject
 };
+
+// Add document parser to window
+if (typeof documentParser !== 'undefined') {
+    window.documentParser = documentParser;
+}

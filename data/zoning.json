@@ -1,26 +1,7 @@
 {
-  "residential-a": {
-    "name": "Residential A District",
-    "description": "Low-density residential district with single-family homes",
-    "far": 0.5,
-    "height_limit": 35,
-    "density_limit": 8,
-    "unit_cap": 100
-  },
-  "residential-b": {
-    "name": "Residential B District",
-    "description": "Medium-density residential district allowing duplexes and small apartment buildings",
-    "far": 1.0,
-    "height_limit": 45,
-    "density_limit": 12,
-    "unit_cap": 200
-  },
-  "mixed-use": {
-    "name": "Mixed-Use District",
-    "description": "High-density district allowing residential and commercial uses",
-    "far": 2.5,
-    "height_limit": 60,
-    "density_limit": 20,
-    "unit_cap": 500
-  }
+  "zone": "Residential",
+  "far": 2.5,
+  "heightLimit": "20m",
+  "maxUnits": 350,
+  "sourcePdf": "assets/docs/zoning/gurugram-zoning-plan.pdf"
 }

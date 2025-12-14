@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update dashboard metrics
     updateStabilityIndex();
     updateSentimentAnalysis();
+    updateComplianceStats();
     setupDashboardControls();
-    // In a full implementation, we would also update charts here
 });
 
 function updateStabilityIndex() {
@@ -31,16 +31,22 @@ function updateStabilityIndex() {
 }
 
 function calculateStabilityScore() {
-    // Simplified calculation for demo purposes
-    // In reality, this would be based on:
-    // - Affordable unit ratio
-    // - Price trend direction
-    // - Sentiment score
-    // - Zoning compliance
-    // - Other factors
+    // Calculate stability score based on actual data
+    const projects = dataLoader.getProjects();
+    const totalProjects = projects.length;
+    const approvedProjects = projects.filter(p => p.status === 'approved').length;
+    const complianceRate = approvedProjects / totalProjects || 0;
     
-    // For demo, we'll return a random score between 70-90
-    return Math.floor(Math.random() * 21) + 70;
+    // Base score with weighting
+    const baseScore = 50;
+    const complianceScore = complianceRate * 30;
+    const sentimentData = getSimulatedSentimentData();
+    const sentimentScore = (sentimentData.positive - sentimentData.negative) * 0.5;
+    
+    let score = baseScore + complianceScore + sentimentScore;
+    // Ensure score is within bounds
+    score = Math.max(0, Math.min(100, score));
+    return Math.round(score);
 }
 
 function updateSentimentAnalysis() {
@@ -58,13 +64,34 @@ function updateSentimentAnalysis() {
     if (negativeElement) negativeElement.textContent = `${sentimentData.negative}%`;
 }
 
-function getSimulatedSentimentData() {
-    // Return simulated sentiment data
-    return {
-        positive: 65,
-        neutral: 25,
-        negative: 10
-    };
+function updateComplianceStats() {
+    const projects = dataLoader.getProjects();
+    const totalProjects = projects.length;
+    const approvedProjects = projects.filter(p => p.status === 'approved').length;
+    const complianceRate = totalProjects > 0 ? Math.round((approvedProjects / totalProjects) * 100) : 0;
+    
+    // Update DOM elements
+    const complianceElement = document.getElementById('compliance-rate');
+    const pendingElement = document.getElementById('pending-reviews');
+    const violationsElement = document.getElementById('violations-count');
+    
+    if (complianceElement) complianceElement.textContent = `${complianceRate}%`;
+    if (pendingElement) pendingElement.textContent = totalProjects - approvedProjects;
+    if (violationsElement) violationsElement.textContent = 0; // No actual violation checking in this demo
+    
+    // Update progress bar width
+    const progressBar = document.querySelector('.progress-fill.good');
+    if (progressBar) {
+        progressBar.style.width = `${complianceRate}%`;
+        // Change color based on value
+        if (complianceRate >= 80) {
+            progressBar.className = 'progress-fill good';
+        } else if (complianceRate >= 60) {
+            progressBar.className = 'progress-fill warning';
+        } else {
+            progressBar.className = 'progress-fill critical';
+        }
+    }
 }
 
 function setupDashboardControls() {

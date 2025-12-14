@@ -1,62 +1,57 @@
 [
   {
     "id": 1,
-    "name": "Riverside Affordable Housing",
-    "status": "approved",
-    "address": "123 Main St",
-    "units": 120,
-    "affordability": "30%",
-    "timeline": "2025-2027",
-    "description": "This mixed-income development will provide affordable housing options while maintaining the character of the neighborhood. The project includes energy-efficient buildings, community spaces, and sustainable landscaping.",
-    "coordinates": {
-      "lat": 40.7128,
-      "lng": -74.0060
-    },
-    "zoning_district": "mixed-use"
+    "name": "PMAY Sector 68 Housing",
+    "area": "Sector 68",
+    "totalUnits": 120,
+    "affordableUnits": 60,
+    "status": "Approved",
+    "sourcePdf": "assets/docs/housing-projects/pmay-project-list.pdf",
+    "lat": 28.37,
+    "lng": 77.04
   },
   {
     "id": 2,
-    "name": "Downtown Senior Living",
-    "status": "completed",
-    "address": "456 Oak Ave",
-    "units": 80,
-    "affordability": "50%",
-    "timeline": "2023-2025",
-    "description": "A dedicated senior living facility with healthcare services and recreational amenities. Designed to support aging in place with accessible features throughout.",
-    "coordinates": {
-      "lat": 40.7215,
-      "lng": -74.0112
-    },
-    "zoning_district": "residential-b"
+    "name": "Tathastu I",
+    "area": "Sector 104",
+    "totalUnits": 350,
+    "affordableUnits": 175,
+    "status": "Approved",
+    "sourcePdf": "assets/docs/marketing/Advitiye Heights Brochure (1).pdf",
+    "lat": 28.48,
+    "lng": 76.98
   },
   {
     "id": 3,
-    "name": "Uptown Family Housing",
-    "status": "proposed",
-    "address": "789 Pine St",
-    "units": 200,
-    "affordability": "40%",
-    "timeline": "2026-2029",
-    "description": "A family-oriented housing complex featuring playgrounds, educational facilities, and community gardens. Focus on creating a vibrant neighborhood for families of all incomes.",
-    "coordinates": {
-      "lat": 40.7352,
-      "lng": -74.0231
-    },
-    "zoning_district": "residential-a"
+    "name": "Tathastu II",
+    "area": "Sector 104",
+    "totalUnits": 280,
+    "affordableUnits": 140,
+    "status": "Approved",
+    "sourcePdf": "assets/docs/marketing/Brochure.pdf",
+    "lat": 28.482,
+    "lng": 76.982
   },
   {
     "id": 4,
-    "name": "Westside Student Housing",
-    "status": "approved",
-    "address": "321 Elm Blvd",
-    "units": 150,
-    "affordability": "35%",
-    "timeline": "2025-2027",
-    "description": "Affordable housing specifically designed for college students and young professionals. Includes study spaces, bike storage, and public transit access.",
-    "coordinates": {
-      "lat": 40.7011,
-      "lng": -74.0123
-    },
-    "zoning_district": "mixed-use"
+    "name": "Advitiya Heights",
+    "area": "Sector 105",
+    "totalUnits": 190,
+    "affordableUnits": 95,
+    "status": "Proposed",
+    "sourcePdf": "assets/docs/marketing/braucher (1).pdf",
+    "lat": 28.49,
+    "lng": 76.99
+  },
+  {
+    "id": 5,
+    "name": "Legend III",
+    "area": "Sector 106",
+    "totalUnits": 160,
+    "affordableUnits": 80,
+    "status": "Proposed",
+    "sourcePdf": "assets/docs/legal/AFFIDAVIT FORM Legend-III (1).docx",
+    "lat": 28.495,
+    "lng": 76.97
   }
 ]

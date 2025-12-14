@@ -1,68 +1,7 @@
-{
-  "stability_index": {
-    "current": 78,
-    "historical": [
-      {
-        "date": "2020-01-01",
-        "value": 65
-      },
-      {
-        "date": "2021-01-01",
-        "value": 68
-      },
-      {
-        "date": "2022-01-01",
-        "value": 72
-      },
-      {
-        "date": "2023-01-01",
-        "value": 75
-      },
-      {
-        "date": "2024-01-01",
-        "value": 77
-      },
-      {
-        "date": "2025-01-01",
-        "value": 78
-      }
-    ]
-  },
-  "sentiment": {
-    "overall": "positive",
-    "positive": 65,
-    "neutral": 25,
-    "negative": 10,
-    "history": [
-      {
-        "date": "2024-01-01",
-        "positive": 58,
-        "neutral": 30,
-        "negative": 12
-      },
-      {
-        "date": "2024-07-01",
-        "positive": 62,
-        "neutral": 27,
-        "negative": 11
-      },
-      {
-        "date": "2025-01-01",
-        "positive": 65,
-        "neutral": 25,
-        "negative": 10
-      }
-    ]
-  },
-  "zoning_compliance": {
-    "compliant_projects": 12,
-    "non_compliant_projects": 2,
-    "pending_review": 3
-  },
-  "housing_supply": {
-    "affordable_units": 1250,
-    "market_rate_units": 3400,
-    "under_construction": 450,
-    "planned": 800
+[
+  {
+    "year": 2022,
+    "avgPrice": 8000,
+    "sourceImage": "assets/images/charts/sector-56-trend.png"
   }
-}
+]

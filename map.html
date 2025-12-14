@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Map - HSHS</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
+
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
+
     <header>
         <div class="container">
             <h1 class="logo-full">Hometown Stability Housing Program</h1>
@@ -26,9 +32,10 @@
 
     <main id="main-content">
         <section class="container">
-            <h2 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem;">Affordable Housing Projects</h2>
+            <h2 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem;">Affordable Housing Projects
+            </h2>
             <p>Explore our current and planned affordable housing projects across the region.</p>
-            
+
             <div class="filters">
                 <div class="filter-group">
                     <label for="status-filter">Status:</label>
@@ -45,15 +52,9 @@
                 </div>
                 <button class="btn btn-sm" id="reset-filters">Reset Filters</button>
             </div>
-            
-            <div class="map-container">
-                <div>Interactive Map Visualization</div>
-                <div class="map-overlay">
-                    <h3>Map Legend</h3>
-                    <p><span class="status-badge status-proposed">Proposed</span> Planning phase</p>
-                    <p><span class="status-badge status-approved">Approved</span> Permitted & funded</p>
-                    <p><span class="status-badge status-completed">Completed</span> Construction finished</p>
-                </div>
+
+            <div class="map-container" style="height: 500px; margin-bottom: 2rem;">
+                <div id="map" style="width: 100%; height: 100%; border-radius: 8px; border: 1px solid #ddd;"></div>
             </div>
 
             <div class="project-list">
@@ -82,23 +83,23 @@
     <script src="js/map.js"></script>
     <script>
         // Add filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const statusFilter = document.getElementById('status-filter');
             const searchFilter = document.getElementById('search-filter');
             const resetButton = document.getElementById('reset-filters');
-            
+
             function applyFilters() {
                 const status = statusFilter.value;
                 const searchTerm = searchFilter.value.toLowerCase();
-                
+
                 // In a real implementation, this would filter the displayed projects
                 console.log('Applying filters:', { status, searchTerm });
             }
-            
+
             statusFilter.addEventListener('change', applyFilters);
             searchFilter.addEventListener('input', applyFilters);
-            
-            resetButton.addEventListener('click', function() {
+
+            resetButton.addEventListener('click', function () {
                 statusFilter.value = 'all';
                 searchFilter.value = '';
                 applyFilters();
@@ -106,4 +107,5 @@
         });
     </script>
 </body>
+
 </html>
