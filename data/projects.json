@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Riverside Affordable Housing",
+    "status": "approved",
+    "address": "123 Main St",
+    "units": 120,
+    "affordability": "30%",
+    "timeline": "2025-2027",
+    "description": "This mixed-income development will provide affordable housing options while maintaining the character of the neighborhood. The project includes energy-efficient buildings, community spaces, and sustainable landscaping.",
+    "coordinates": {
+      "lat": 40.7128,
+      "lng": -74.0060
+    },
+    "zoning_district": "mixed-use"
+  },
+  {
+    "id": 2,
+    "name": "Downtown Senior Living",
+    "status": "completed",
+    "address": "456 Oak Ave",
+    "units": 80,
+    "affordability": "50%",
+    "timeline": "2023-2025",
+    "description": "A dedicated senior living facility with healthcare services and recreational amenities. Designed to support aging in place with accessible features throughout.",
+    "coordinates": {
+      "lat": 40.7215,
+      "lng": -74.0112
+    },
+    "zoning_district": "residential-b"
+  },
+  {
+    "id": 3,
+    "name": "Uptown Family Housing",
+    "status": "proposed",
+    "address": "789 Pine St",
+    "units": 200,
+    "affordability": "40%",
+    "timeline": "2026-2029",
+    "description": "A family-oriented housing complex featuring playgrounds, educational facilities, and community gardens. Focus on creating a vibrant neighborhood for families of all incomes.",
+    "coordinates": {
+      "lat": 40.7352,
+      "lng": -74.0231
+    },
+    "zoning_district": "residential-a"
+  },
+  {
+    "id": 4,
+    "name": "Westside Student Housing",
+    "status": "approved",
+    "address": "321 Elm Blvd",
+    "units": 150,
+    "affordability": "35%",
+    "timeline": "2025-2027",
+    "description": "Affordable housing specifically designed for college students and young professionals. Includes study spaces, bike storage, and public transit access.",
+    "coordinates": {
+      "lat": 40.7011,
+      "lng": -74.0123
+    },
+    "zoning_district": "mixed-use"
+  }
+]

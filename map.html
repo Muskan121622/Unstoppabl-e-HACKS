@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Map - HSHS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <div class="container">
+            <h1 class="logo-full">Hometown Stability Housing Program</h1>
+            <h1 class="logo-acronym">HSHP</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="map.html" class="active">Map</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="community.html">Community</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="container">
+            <h2 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem;">Affordable Housing Projects</h2>
+            <p>Explore our current and planned affordable housing projects across the region.</p>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="status-filter">Status:</label>
+                    <select id="status-filter">
+                        <option value="all">All Projects</option>
+                        <option value="proposed">Proposed</option>
+                        <option value="approved">Approved</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="search-filter">Search:</label>
+                    <input type="text" id="search-filter" placeholder="Project name or location">
+                </div>
+                <button class="btn btn-sm" id="reset-filters">Reset Filters</button>
+            </div>
+            
+            <div class="map-container">
+                <div>Interactive Map Visualization</div>
+                <div class="map-overlay">
+                    <h3>Map Legend</h3>
+                    <p><span class="status-badge status-proposed">Proposed</span> Planning phase</p>
+                    <p><span class="status-badge status-approved">Approved</span> Permitted & funded</p>
+                    <p><span class="status-badge status-completed">Completed</span> Construction finished</p>
+                </div>
+            </div>
+
+            <div class="project-list">
+                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem;">Project List</h3>
+                <div id="projects-container">
+                    <!-- Projects will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hometown Stability Housing Program. This is a demonstration project.</p>
+            <p>Data sources: Public records, zoning databases, and market research reports.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Accessibility</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Open Data</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data-loader.js"></script>
+    <script src="js/map.js"></script>
+    <script>
+        // Add filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusFilter = document.getElementById('status-filter');
+            const searchFilter = document.getElementById('search-filter');
+            const resetButton = document.getElementById('reset-filters');
+            
+            function applyFilters() {
+                const status = statusFilter.value;
+                const searchTerm = searchFilter.value.toLowerCase();
+                
+                // In a real implementation, this would filter the displayed projects
+                console.log('Applying filters:', { status, searchTerm });
+            }
+            
+            statusFilter.addEventListener('change', applyFilters);
+            searchFilter.addEventListener('input', applyFilters);
+            
+            resetButton.addEventListener('click', function() {
+                statusFilter.value = 'all';
+                searchFilter.value = '';
+                applyFilters();
+            });
+        });
+    </script>
+</body>
+</html>

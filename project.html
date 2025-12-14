@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - HSHS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <div class="container">
+            <h1 class="logo-full">Hometown Stability Housing Program</h1>
+            <h1 class="logo-acronym">HSHP</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="map.html">Map</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="community.html">Community</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div class="project-detail-header">
+                    <h2 id="project-name">Loading project...</h2>
+                    <span class="status-badge" id="project-status">Loading</span>
+                </div>
+                <div>
+                    <button class="btn btn-sm" id="export-project">Export Data</button>
+                    <button class="btn btn-sm" id="share-project">Share</button>
+                </div>
+            </div>
+            
+            <div class="project-meta">
+                <div class="meta-item">Location: <span id="project-location">-</span></div>
+                <div class="meta-item">Units: <span id="project-units">-</span></div>
+                <div class="meta-item">Affordability: <span id="project-affordability">-</span></div>
+                <div class="meta-item">Timeline: <span id="project-timeline">-</span></div>
+            </div>
+            
+            <div class="section">
+                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Project Overview</h3>
+                <p id="project-description">Loading project description...</p>
+            </div>
+            
+            <div class="section">
+                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Zoning Compliance Check</h3>
+                <p>Verification against local zoning regulations:</p>
+                <div class="zoning-result" id="zoning-result">
+                    Checking compliance...
+                </div>
+                <div class="detail-card">
+                    <h4>Floor Area Ratio (FAR)</h4>
+                    <p>Allowed: <span id="far-allowed">-</span> | Proposed: <span id="far-proposed">-</span></p>
+                </div>
+                <div class="detail-card">
+                    <h4>Building Height</h4>
+                    <p>Allowed: <span id="height-allowed">-</span> | Proposed: <span id="height-proposed">-</span></p>
+                </div>
+                <div class="detail-card">
+                    <h4>Density Requirements</h4>
+                    <p>Allowed: <span id="density-allowed">-</span> | Proposed: <span id="density-proposed">-</span></p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Home Value Impact</h3>
+                <p>Estimated effect on surrounding property values:</p>
+                <div class="value-chart">
+                    <div class="value-bar">
+                        <div class="bar-container">
+                            <div class="bar-fill before" id="before-bar" style="height: 0%;"></div>
+                        </div>
+                        <div class="bar-label">Before Project</div>
+                        <div class="bar-value" id="before-value">$0</div>
+                    </div>
+                    <div class="value-bar">
+                        <div class="bar-container">
+                            <div class="bar-fill after" id="after-bar" style="height: 0%;"></div>
+                        </div>
+                        <div class="bar-label">After Project</div>
+                        <div class="bar-value" id="after-value">$0</div>
+                    </div>
+                </div>
+                <p><em>Note: Values are projected based on historical data and comparable developments.</em></p>
+            </div>
+            
+            <div class="feedback-section">
+                <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Community Feedback</h3>
+                <p>Your opinion matters. Help us understand community sentiment:</p>
+                
+                <div class="vote-buttons">
+                    <button class="vote-btn upvote">👍 Support</button>
+                    <span class="vote-count" id="upvote-count">0</span>
+                    <button class="vote-btn downvote">👎 Concerns</button>
+                    <span class="vote-count" id="downvote-count">0</span>
+                </div>
+                
+                <div class="feedback-form">
+                    <h4>Share Your Thoughts</h4>
+                    <textarea id="feedback-text" placeholder="Enter your feedback about this project..."></textarea>
+                    <button class="submit-feedback" id="submit-feedback">Submit Feedback</button>
+                </div>
+                
+                <div class="feedback-list">
+                    <h4>Community Voices</h4>
+                    <div id="feedback-container">
+                        Loading feedback...
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hometown Stability Housing Program. This is a demonstration project.</p>
+            <p>Data sources: Public records, zoning databases, and market research reports.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Accessibility</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Open Data</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="notification" id="project-notification">
+        Action completed successfully!
+    </div>
+
+    <script src="js/data-loader.js"></script>
+    <script src="js/zoning.js"></script>
+    <script src="js/value.js"></script>
+    <script src="js/sentiment.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/project.js"></script>
+    <script>
+        // Add project controls
+        document.addEventListener('DOMContentLoaded', function() {
+            const exportButton = document.getElementById('export-project');
+            const shareButton = document.getElementById('share-project');
+            const notification = document.getElementById('project-notification');
+            
+            exportButton.addEventListener('click', function() {
+                notification.textContent = 'Project data exported successfully!';
+                notification.className = 'notification show success';
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            });
+            
+            shareButton.addEventListener('click', function() {
+                notification.textContent = 'Project shared successfully!';
+                notification.className = 'notification show success';
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>

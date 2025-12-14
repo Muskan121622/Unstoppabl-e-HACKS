@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - HSHS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header>
+        <div class="container">
+            <h1 class="logo-full">Hometown Stability Housing Program</h1>
+            <h1 class="logo-acronym">HSHP</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="map.html">Map</a></li>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="community.html" class="active">Community</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <h2 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin: 0;">Community Engagement</h2>
+                <div>
+                    <button class="btn btn-sm" id="ask-question">Ask a Question</button>
+                    <button class="btn btn-sm" id="share-experience">Share Experience</button>
+                </div>
+            </div>
+            <p>Connect with your community and participate in discussions about affordable housing projects.</p>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="topic-filter">Topic:</label>
+                    <select id="topic-filter">
+                        <option value="all">All Topics</option>
+                        <option value="property-values">Property Values</option>
+                        <option value="zoning">Zoning</option>
+                        <option value="community-impact">Community Impact</option>
+                        <option value="development-process">Development Process</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sort-filter">Sort by:</label>
+                    <select id="sort-filter">
+                        <option value="recent">Most Recent</option>
+                        <option value="popular">Most Popular</option>
+                        <option value="answered">Answered</option>
+                    </select>
+                </div>
+                <button class="btn btn-sm" id="reset-filters">Reset Filters</button>
+            </div>
+            
+            <div class="community-grid">
+                <div class="community-main">
+                    <div class="discussion-list" id="discussions-container">
+                        <!-- Discussions will be loaded here by JavaScript -->
+                    </div>
+                    
+                    <div class="pagination">
+                        <button class="btn btn-sm">Previous</button>
+                        <span class="page-numbers">
+                            <button class="btn btn-sm active">1</button>
+                            <button class="btn btn-sm">2</button>
+                            <button class="btn btn-sm">3</button>
+                        </span>
+                        <button class="btn btn-sm">Next</button>
+                    </div>
+                </div>
+                
+                <div class="community-sidebar">
+                    <div class="dashboard-card">
+                        <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Community Stats</h3>
+                        <div class="stat-card">
+                            <div class="stat-value">1,248</div>
+                            <div class="stat-label">Total Participants</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">86%</div>
+                            <div class="stat-label">Questions Answered</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">Active Discussions</div>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Popular Topics</h3>
+                        <div class="topic-tag">Property Values</div>
+                        <div class="topic-tag">Zoning Regulations</div>
+                        <div class="topic-tag">Traffic Impact</div>
+                        <div class="topic-tag">Green Spaces</div>
+                        <div class="topic-tag">Schools</div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3 style="color: #003366; border-left: 5px solid #fcba19; padding-left: 1rem; margin-bottom: 1rem;">Upcoming Events</h3>
+                        <div class="event-item">
+                            <div class="event-date">May 15</div>
+                            <div class="event-title">Town Hall Meeting</div>
+                            <div class="event-location">City Hall, Room 205</div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">May 22</div>
+                            <div class="event-title">Project Tour - Riverside</div>
+                            <div class="event-location">123 Main St</div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">Jun 5</div>
+                            <div class="event-title">Planning Committee</div>
+                            <div class="event-location">Online Meeting</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for asking questions -->
+    <div class="modal" id="question-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Ask a Question</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="question-form">
+                    <div class="form-group">
+                        <label for="question-title">Question Title</label>
+                        <input type="text" id="question-title" placeholder="Briefly describe your question">
+                    </div>
+                    <div class="form-group">
+                        <label for="question-topic">Topic</label>
+                        <select id="question-topic">
+                            <option value="property-values">Property Values</option>
+                            <option value="zoning">Zoning</option>
+                            <option value="community-impact">Community Impact</option>
+                            <option value="development-process">Development Process</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="question-details">Details</label>
+                        <textarea id="question-details" rows="5" placeholder="Provide more details about your question"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn secondary" id="cancel-question">Cancel</button>
+                        <button type="submit" class="btn primary">Submit Question</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for sharing experiences -->
+    <div class="modal" id="experience-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Share Your Experience</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="experience-form">
+                    <div class="form-group">
+                        <label for="experience-title">Title</label>
+                        <input type="text" id="experience-title" placeholder="Give your experience a title">
+                    </div>
+                    <div class="form-group">
+                        <label for="experience-type">Type of Experience</label>
+                        <select id="experience-type">
+                            <option value="resident">Resident</option>
+                            <option value="developer">Developer</option>
+                            <option value="official">City Official</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience-details">Your Experience</label>
+                        <textarea id="experience-details" rows="5" placeholder="Share your experience with affordable housing projects"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn secondary" id="cancel-experience">Cancel</button>
+                        <button type="submit" class="btn primary">Share Experience</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hometown Stability Housing Program. This is a demonstration project.</p>
+            <p>Data sources: Public records, zoning databases, and market research reports.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Accessibility</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Open Data</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="notification" id="community-notification">
+        Action completed successfully!
+    </div>
+
+    <script src="js/data-loader.js"></script>
+    <script src="js/community.js"></script>
+</body>
+</html>
